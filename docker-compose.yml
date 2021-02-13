@@ -1,0 +1,21 @@
+version: '3'
+services:
+  dev:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - ./src:/scaffold
+    container_name: scaffold_dev
+    hostname: scaffold_dev
+    env_file:
+      - dev.env
+  db:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - 8080:8080
+    container_name: scaffold_db
+    hostname: scaffold_db
+    env_file:
+      - db.env
